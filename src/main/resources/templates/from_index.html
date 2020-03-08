@@ -1,0 +1,142 @@
+<!DOCTYPE html >
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script th:src="@{../static/js/layui.js}"></script>
+
+    <script th:src="@{../static/js/app.js}"></script>
+</head>
+<body>
+<h3>表单配置</h3>
+<hr>
+
+<div style="width: 60px;float:left; margin-left:20px;"><a href="/add" target="model"><button class="ant-btn ant-btn-red"  >新增</button></a></div>
+<div style="width: 60px;float:left; margin-left:20px;"><a href="/preview" target="model"><button class="ant-btn ant-btn-red"  >预览</button></a></div>
+<div style="clear: both;margin-top:50px;">
+    <table class="table" cellspacing="0" summary="The technical specifications of the Apple PowerMac G5 series">
+        <thead>
+        <tr>
+            <th class="spec">序号</th>
+            <th>文本</th>
+            <th>文本类型</th>
+            <th>是否必填</th>
+        </tr>
+        </thead>
+        <tbody id="clothes">
+        <tr th:each="dyFromslist : ${dyFroms}">
+            <td th:text="${dyFromslistStat.index+1}"></td>
+            <td th:text="${dyFromslist.from_text}"></td>
+            <td th:text="${dyFromslist.ftext}"></td>
+            <td th:text="${dyFromslist.from_state}==0 ?'非必填' : '必填' "></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
+<style>
+    a{
+        cursor:pointer;
+        text-decoration:none;
+    }
+    .s1{
+        width:200px;
+        box-sizing:border-box;
+        border:1px solid #ccc;
+        padding:5px;
+        border-radius:3px;
+        font-size:16px;
+        font-family:"Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB","        Microsoft Yahei",sans-serif;
+    }
+
+    .ant-btn {
+        line-height: 1.499;
+        position: relative;
+        display: inline-block;
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: center;
+        background-image: none;
+        border: 1px solid transparent;
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+        cursor: pointer;
+        -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        height: 32px;
+        padding: 0 15px;
+        font-size: 14px;
+        border-radius: 4px;
+        color: rgba(0,0,0,0.65);
+        background-color: #fff;
+        border-color: #d9d9d9;
+    }
+
+    .ant-btn-primary {
+        color: #fff;
+        background-color: #1890ff;
+        border-color: #1890ff;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    }
+    .ant-btn-red {
+        color: #fff;
+        background-color: blue;
+        border-color: blue;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    }
+
+    .table
+    {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    th {
+        font: bold 12px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+        color: #4f6b72;
+        border-right: 1px solid #C1DAD7;
+        border-bottom: 1px solid #C1DAD7;
+        border-top: 1px solid #C1DAD7;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        text-align: left;
+        padding: 6px 6px 6px 12px;
+        background: #CAE8EA no-repeat;
+    }
+    td {
+        border-right: 1px solid #C1DAD7;
+        border-bottom: 1px solid #C1DAD7;
+        background: #fff;
+        font-size:14px;
+        padding: 6px 6px 6px 12px;
+        color: #4f6b72;
+    }
+    td.alt {
+        background: #F5FAFA;
+        color: #797268;
+    }
+    th.spec,td.spec {
+        border-left: 1px solid #C1DAD7;
+    }
+    /*---------for IE 5.x bug*/
+    html>body td{ font-size:14px;}
+    tr.select th,tr.select td
+    {
+        background-color:#CAE8EA;
+        color: #797268;
+    }
+</style>

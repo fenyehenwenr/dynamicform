@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>表单预览</title>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<!--/*@thymesVar id="list" type=""*/-->
+<div style="margin-left: 30px;" th:each="view:${fromview}">
+    <span th:utext="${view.from_text}"></span>
+    <input  th:style="${view.from_type}== 3? 'display:none':'display:block'" th:type="${view.from_type}==1 ? 'password':'text'"  style="margin-left: 60px;">
+    <select th:style="${view.from_type}!=3 ? 'display:none':'display:block'">
+        <option>
+            男
+        </option>
+        <option>
+            女
+        </option>
+    </select>
+</div>
+<div style="width: 60px;float: left;margin-left: 20px;margin-left:47%;"><button onclick="newpass()" class="ant-btn ant-btn-red"  >提交</button></div>
+
+</body>
+</html>
+
+<script>
+
+    function newpass() {
+
+
+    }
+</script>

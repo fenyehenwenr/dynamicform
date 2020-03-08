@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>新增标签</title>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h3>新增表单标签</h3>
+<hr>
+<p></p>
+<div style="margin-left: 30px;">文本 <input id="textid" class="s1" type="text" placeholder="请输入文本" style="margin-left: 60px;"></div>
+<p></p>
+<p></p>
+<div style="margin-left: 30px;">文本类型
+    <select id="typeid" class="s1" style="margin-left: 30px;">
+    <option value=0>文本</option>
+    <option value=1>密码文本 </option>
+        <option value=2>选择框</option>
+        <option value=3>时间类型 </option>
+</select></div>
+<p></p>
+<p></p>
+<div style="margin-left: 30px;"> 是否必填
+    <select id="stateid" class="s1" style="margin-left: 30px;">
+        <option value=0>非必填</option>
+        <option  value=1>必填 </option>
+    </select>
+</div>
+<p></p>
+<p></p>
+<div style="margin-left: 30px;margin-top: 20px;"><a href="/from" target="model"><button  class="ant-btn ant-btn-red"  >返回</button> </a> <button style="margin-left: 10px;background-color: crimson;" onclick="addch()" class="ant-btn ant-btn-red"  >提交</button></div>
+</body>
+</html>
+
+<script>
+
+    function addch() {
+        var textid = $.trim($("#textid").val());
+        if (textid===""){
+            alert("请填写文本");
+            return;
+        }
+        var typeid = $.trim($("#typeid").val());
+        var stateid = $.trim($("#stateid").val());
+        //ajax去服务器端校验
+        var data= {from_text:textid,from_type:typeid,from_state:stateid};
+        $.ajax({
+            type:"POST",
+            url:"/from",
+            data:JSON.stringify(data),
+            dataType:'json',
+            contentType:"application/json",
+
+            success:function(result,status){
+                //alert(msg);
+                if(status == "success"){
+                    alert("添加成功！");
+                    location.href="/from"
+                }else{
+                    alert("添加失败，请重试!");
+                }
+            },
+            error:function(result,msg){
+                alert("添加失败，请重试!");
+            },
+        });
+    }
+</script>
+
+<style>
+
+    .s1{
+        width:200px;
+        box-sizing:border-box;
+        border:1px solid #ccc;
+        padding:5px;
+        border-radius:3px;
+        font-size:16px;
+        font-family:"Helvetica Neue","Luxi Sans","DejaVu Sans",Tahoma,"Hiragino Sans GB","        Microsoft Yahei",sans-serif;
+    }
+
+
+    .ant-btn {
+        line-height: 1.499;
+        position: relative;
+        display: inline-block;
+        font-weight: 400;
+        white-space: nowrap;
+        text-align: center;
+        background-image: none;
+        border: 1px solid transparent;
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.015);
+        cursor: pointer;
+        -webkit-transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        transition: all .3s cubic-bezier(.645, .045, .355, 1);
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        height: 32px;
+        padding: 0 15px;
+        font-size: 14px;
+        border-radius: 4px;
+        /*//   color: rgba(0,0,0,0.65);*/
+        background-color: #fff;
+        border-color: #d9d9d9;
+    }
+
+    .ant-btn-primary {
+        color: #fff;
+        background-color: #1890ff;
+        border-color: #1890ff;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    }
+    .ant-btn-red {
+        color: #fff;
+        background-color: blue;
+        border-color: blue;
+        text-shadow: 0 -1px 0 rgba(0,0,0,0.12);
+        -webkit-box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+        box-shadow: 0 2px 0 rgba(0,0,0,0.045);
+    }
+
+</style>
